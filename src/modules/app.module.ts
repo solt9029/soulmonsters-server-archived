@@ -1,10 +1,10 @@
-import { UserEntity } from './user/user.entity';
+import { UserEntity } from '../entities/user.entity';
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UserService } from './user/user.service';
-import { UserController } from './user/user.controller';
-import { UserModule } from './user/user.module';
+import { AppController } from '../controllers/app.controller';
+import { AppService } from '../services/app.service';
+import { UserService } from '../services/user.service';
+import { UserController } from '../controllers/user.controller';
+import { UserModule } from './user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 const {
@@ -27,7 +27,7 @@ const {
       password: DB_PASSWORD,
       database: DB_DATABASE,
       entities: [UserEntity],
-      synchronize: DB_SYNCHRONIZE.toLowerCase() === 'true',
+      synchronize: DB_SYNCHRONIZE?.toLowerCase() === 'true',
     }),
     UserModule,
   ],
