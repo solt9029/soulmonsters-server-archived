@@ -29,6 +29,7 @@ const {
       entities: [UserEntity],
       synchronize: DB_SYNCHRONIZE?.toLowerCase() === 'true',
     }),
+    TypeOrmModule.forFeature([UserEntity]),
     UserModule,
   ],
   controllers: [AppController, UserController],
