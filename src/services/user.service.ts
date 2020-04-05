@@ -13,11 +13,12 @@ export class UserService {
     private readonly userRepository: Repository<UserEntity>,
   ) {}
 
-  async findAll(): Promise<UserEntity[]> {
-    return await this.userRepository.find();
+  async findAll(): Promise<UserModel[]> {
+    const userEntities = await this.userRepository.find();
+    return userEntities.map(value => UserModelFactory.create(value));
   }
 
-  async save(userModel: UserModel): Promise<UserEntity> {
+  async save(userModel: UserModel): Promise<UserModel> {
     const userEntity = UserEntityFactory.create(userModel);
     const savedUserEntity = await this.userRepository.save(userEntity);
     return UserModelFactory.create(savedUserEntity);

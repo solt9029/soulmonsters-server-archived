@@ -10,4 +10,9 @@ export class UserController {
   async save(): Promise<UserModel> {
     return await this.userService.save(new UserModel(null, 'test-user'));
   }
+
+  @Get('findAll')
+  async findAll(): Promise<UserModel[]> {
+    return await this.userService.findAll();
+  }
 }
