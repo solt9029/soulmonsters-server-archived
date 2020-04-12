@@ -33,7 +33,7 @@ const {
     TypeOrmModule.forFeature([DeckEntity]),
     DeckModule,
   ],
-  controllers: [AppController, DeckController],
-  providers: [AppService, UserService, DeckService],
+  controllers: [AppController],
+  providers: [AppService, UserService],
 })
 export class AppModule {}
