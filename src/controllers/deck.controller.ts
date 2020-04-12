@@ -14,7 +14,7 @@ export class DeckController {
     @Body() saveDeckDto: SaveDeckDto,
     @Req() req: Request,
   ): Promise<DeckModel> {
-    const userId = await (
+    const userId = (
       await admin.auth().verifyIdToken(req.headers['authtoken'].toString())
     ).uid;
     return await this.deckService.save(
