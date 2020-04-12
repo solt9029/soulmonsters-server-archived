@@ -1,3 +1,7 @@
+import { DeckService } from './../services/deck.service';
+import { DeckController } from './../controllers/deck.controller';
+import { DeckEntity } from './../entities/deck.entity';
+import { DeckModule } from './deck.module';
 import { UserController } from './../controllers/user.controller';
 import { AuthMiddleware } from '../middlewares/auth.middleware';
 import { UserEntity } from '../entities/user.entity';
@@ -27,14 +31,15 @@ const {
       username: DB_USERNAME,
       password: DB_PASSWORD,
       database: DB_DATABASE,
-      entities: [UserEntity],
+      entities: [UserEntity, DeckEntity],
       synchronize: DB_SYNCHRONIZE?.toLowerCase() === 'true',
     }),
-    TypeOrmModule.forFeature([UserEntity]),
+    TypeOrmModule.forFeature([UserEntity, DeckEntity]),
     UserModule,
+    DeckModule,
   ],
-  controllers: [AppController, UserController],
-  providers: [AppService, UserService],
+  controllers: [AppController, UserController, DeckController],
+  providers: [AppService, UserService, DeckService],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
