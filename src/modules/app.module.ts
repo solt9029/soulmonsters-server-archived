@@ -1,10 +1,7 @@
-import { DeckService } from './../services/deck.service';
-import { DeckController } from './../controllers/deck.controller';
 import { DeckEntity } from './../entities/deck.entity';
 import { DeckModule } from './deck.module';
 import { Module } from '@nestjs/common';
 import { AppController } from '../controllers/app.controller';
-import { AppService } from '../services/app.service';
 import { UserService } from '../services/user.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -34,6 +31,6 @@ const {
     DeckModule,
   ],
   controllers: [AppController],
-  providers: [AppService, UserService],
+  providers: [UserService],
 })
 export class AppModule {}
