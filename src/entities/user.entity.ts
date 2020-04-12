@@ -1,15 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import * as admin from 'firebase-admin';
 
-@Entity({ name: 'users' })
-export class UserEntity {
-  constructor(id: number, name: string) {
-    this.id = id;
-    this.name = name;
-  }
-
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column({ length: 16 })
-  name: string;
-}
+export type UserEntity = {
+  name?: string;
+  picture?: string;
+} & admin.auth.DecodedIdToken;

@@ -1,9 +1,7 @@
 import { SaveDeckDto } from './../dtos/save.deck.dto';
 import { DeckModel } from './../models/deck.model';
 import { DeckService } from './../services/deck.service';
-import { Controller, Get, Req, Post, Body } from '@nestjs/common';
-import * as admin from 'firebase-admin';
-import { Request } from 'express';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { User } from 'src/decorators/user.decorator';
 
 @Controller('deck')

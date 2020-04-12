@@ -2,9 +2,7 @@ import { DeckService } from './../services/deck.service';
 import { DeckController } from './../controllers/deck.controller';
 import { DeckEntity } from './../entities/deck.entity';
 import { DeckModule } from './deck.module';
-import { UserController } from './../controllers/user.controller';
 import { AuthMiddleware } from '../middlewares/auth.middleware';
-import { UserEntity } from '../entities/user.entity';
 import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { AppController } from '../controllers/app.controller';
 import { AppService } from '../services/app.service';
@@ -31,14 +29,14 @@ const {
       username: DB_USERNAME,
       password: DB_PASSWORD,
       database: DB_DATABASE,
-      entities: [UserEntity, DeckEntity],
+      entities: [DeckEntity],
       synchronize: DB_SYNCHRONIZE?.toLowerCase() === 'true',
     }),
-    TypeOrmModule.forFeature([UserEntity, DeckEntity]),
+    TypeOrmModule.forFeature([DeckEntity]),
     UserModule,
     DeckModule,
   ],
-  controllers: [AppController, UserController, DeckController],
+  controllers: [AppController, DeckController],
   providers: [AppService, UserService, DeckService],
 })
 export class AppModule {
