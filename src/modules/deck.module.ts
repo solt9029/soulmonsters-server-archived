@@ -1,6 +1,6 @@
 import { DeckService } from './../services/deck.service';
-import { DeckController } from './../controllers/deck.controller';
-import { DeckEntity } from './../entities/deck.entity';
+import { DeckController } from './../controllers/Deck.controller';
+import { DeckEntity } from './../entities/Deck.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
 

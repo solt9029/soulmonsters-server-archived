@@ -1,10 +1,12 @@
+import { AuthGuard } from '../guards/auth.guard';
 import { SaveDeckDto } from './../dtos/save.deck.dto';
 import { DeckModel } from './../models/deck.model';
 import { DeckService } from './../services/deck.service';
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
 import { User } from 'src/decorators/user.decorator';
 
 @Controller('deck')
+@UseGuards(AuthGuard)
 export class DeckController {
   constructor(private readonly deckService: DeckService) {}
 
@@ -14,7 +16,7 @@ export class DeckController {
     @Body() saveDeckDto: SaveDeckDto,
   ): Promise<DeckModel> {
     return await this.deckService.save(
-      new DeckModel(null, userModel.uid, saveDeckDto.name),
+      new DeckModel(null, userModel.id, saveDeckDto.name),
     );
   }
 

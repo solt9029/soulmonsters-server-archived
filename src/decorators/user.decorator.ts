@@ -1,17 +1,9 @@
-import { UserModelFactory } from 'src/factories/user.model.factory';
+import { UserModel } from 'src/models/user.model';
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import * as admin from 'firebase-admin';
 
 export const User = createParamDecorator(
-  async (data: unknown, ctx: ExecutionContext) => {
+  async (data: unknown, ctx: ExecutionContext): Promise<UserModel> => {
     const req = ctx.switchToHttp().getRequest();
-
-    const userEntity = await admin
-      .auth()
-      .verifyIdToken(req.headers['authtoken'].toString());
-
-    console.log(userEntity);
-
-    return UserModelFactory.create(userEntity);
+    return req.user;
   },
 );

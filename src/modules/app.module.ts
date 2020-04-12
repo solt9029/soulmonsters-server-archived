@@ -2,8 +2,7 @@ import { DeckService } from './../services/deck.service';
 import { DeckController } from './../controllers/deck.controller';
 import { DeckEntity } from './../entities/deck.entity';
 import { DeckModule } from './deck.module';
-import { AuthMiddleware } from '../middlewares/auth.middleware';
-import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from '../controllers/app.controller';
 import { AppService } from '../services/app.service';
 import { UserService } from '../services/user.service';
@@ -39,11 +38,4 @@ const {
   controllers: [AppController, DeckController],
   providers: [AppService, UserService, DeckService],
 })
-export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).forRoutes({
-      path: '*',
-      method: RequestMethod.ALL,
-    });
-  }
-}
+export class AppModule {}
