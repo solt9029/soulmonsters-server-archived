@@ -4,6 +4,7 @@ import { DeckService } from './../services/deck.service';
 import { Controller, Get, Req, Post, Body } from '@nestjs/common';
 import * as admin from 'firebase-admin';
 import { Request } from 'express';
+import { User } from 'src/decorators/user.decorator';
 
 @Controller('deck')
 export class DeckController {
@@ -11,14 +12,11 @@ export class DeckController {
 
   @Post('save')
   async save(
+    @User() userModel,
     @Body() saveDeckDto: SaveDeckDto,
-    @Req() req: Request,
   ): Promise<DeckModel> {
-    const userEntity = await admin
-      .auth()
-      .verifyIdToken(req.headers['authtoken'].toString());
     return await this.deckService.save(
-      new DeckModel(null, userEntity.uid, saveDeckDto.name),
+      new DeckModel(null, userModel.uid, saveDeckDto.name),
     );
   }
 
