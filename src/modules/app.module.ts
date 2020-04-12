@@ -1,4 +1,3 @@
-import { DeckService } from './../services/deck.service';
 import { CardEntity } from './../entities/card.entity';
 import { CardModule } from './card.module';
 import { DeckEntity } from './../entities/deck.entity';
