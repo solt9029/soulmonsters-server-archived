@@ -14,11 +14,11 @@ export class DeckController {
     @Body() saveDeckDto: SaveDeckDto,
     @Req() req: Request,
   ): Promise<DeckModel> {
-    const userId = (
-      await admin.auth().verifyIdToken(req.headers['authtoken'].toString())
-    ).uid;
+    const userEntity = await admin
+      .auth()
+      .verifyIdToken(req.headers['authtoken'].toString());
     return await this.deckService.save(
-      new DeckModel(null, userId, saveDeckDto.name),
+      new DeckModel(null, userEntity.uid, saveDeckDto.name),
     );
   }
 
