@@ -1,8 +1,9 @@
+import { CardModel } from './../models/card.model';
+import { Pagination, IPaginationOptions } from 'nestjs-typeorm-paginate';
 import { CardRo } from './../ros/card.ro';
-import { CardModel } from '../models/card.model';
 
 export abstract class CardRoFactory {
-  public static create(cardModel: CardModel): CardRo {
+  public static createCardRo(cardModel: CardModel): CardRo {
     return new CardRo(
       cardModel.id,
       cardModel.name,
@@ -14,6 +15,24 @@ export abstract class CardRoFactory {
       cardModel.cost,
       cardModel.detail,
       cardModel.picture,
+    );
+  }
+
+  public static createCardRoPagination(
+    cardModelPagination: Pagination<CardModel>,
+    options: IPaginationOptions,
+  ): Pagination<CardRo> {
+    const { items, meta, links } = cardModelPagination;
+    return new Pagination(
+      items.map(value => this.createCardRo(value)),
+      {
+        totalItems: meta.totalItems,
+        itemCount: items.length,
+        itemsPerPage: options.limit,
+        totalPages: meta.totalPages,
+        currentPage: meta.currentPage,
+      },
+      links,
     );
   }
 }

@@ -31,6 +31,7 @@
     "dotenv": "^8.2.0",
     "firebase-admin": "^8.10.0",
     "mysql": "^2.18.1",
+    "nestjs-typeorm-paginate": "^2.0.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",

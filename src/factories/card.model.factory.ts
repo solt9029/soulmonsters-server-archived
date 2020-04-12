@@ -1,8 +1,9 @@
+import { CardEntity } from './../entities/card.entity';
+import { Pagination, IPaginationOptions } from 'nestjs-typeorm-paginate';
 import { CardModel } from '../models/card.model';
-import { CardEntity } from '../entities/card.entity';
 
 export abstract class CardModelFactory {
-  public static create(cardEntity: CardEntity): CardModel {
+  public static createCardModel(cardEntity: CardEntity): CardModel {
     return new CardModel(
       cardEntity.id,
       cardEntity.name,
@@ -14,6 +15,24 @@ export abstract class CardModelFactory {
       cardEntity.cost,
       cardEntity.detail,
       cardEntity.picture,
+    );
+  }
+
+  public static createCardModelPagination(
+    cardEntityPagination: Pagination<CardEntity>,
+    options: IPaginationOptions,
+  ): Pagination<CardModel> {
+    const { items, meta, links } = cardEntityPagination;
+    return new Pagination(
+      items.map(value => this.createCardModel(value)),
+      {
+        totalItems: meta.totalItems,
+        itemCount: items.length,
+        itemsPerPage: options.limit,
+        totalPages: meta.totalPages,
+        currentPage: meta.currentPage,
+      },
+      links,
     );
   }
 }
