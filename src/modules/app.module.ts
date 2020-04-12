@@ -1,3 +1,6 @@
+import { DeckService } from './../services/deck.service';
+import { CardEntity } from './../entities/card.entity';
+import { CardModule } from './card.module';
 import { DeckEntity } from './../entities/deck.entity';
 import { DeckModule } from './deck.module';
 import { Module } from '@nestjs/common';
@@ -17,6 +20,7 @@ const {
 
 @Module({
   imports: [
+    TypeOrmModule.forFeature([DeckEntity]), // HACK: I don't know why this is needed.
     TypeOrmModule.forRoot({
       type: DB_TYPE,
       host: DB_HOST,
@@ -24,11 +28,11 @@ const {
       username: DB_USERNAME,
       password: DB_PASSWORD,
       database: DB_DATABASE,
-      entities: [DeckEntity],
+      entities: [DeckEntity, CardEntity],
       synchronize: DB_SYNCHRONIZE?.toLowerCase() === 'true',
     }),
-    TypeOrmModule.forFeature([DeckEntity]),
     DeckModule,
+    CardModule,
   ],
   controllers: [AppController],
   providers: [UserService],
