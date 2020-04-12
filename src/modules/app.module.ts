@@ -6,7 +6,6 @@ import { Module } from '@nestjs/common';
 import { AppController } from '../controllers/app.controller';
 import { AppService } from '../services/app.service';
 import { UserService } from '../services/user.service';
-import { UserModule } from './user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 const {
@@ -32,7 +31,6 @@ const {
       synchronize: DB_SYNCHRONIZE?.toLowerCase() === 'true',
     }),
     TypeOrmModule.forFeature([DeckEntity]),
-    UserModule,
     DeckModule,
   ],
   controllers: [AppController, DeckController],

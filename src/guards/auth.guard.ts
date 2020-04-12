@@ -1,5 +1,4 @@
 import { UserService } from '../services/user.service';
-import { UserModelFactory } from 'src/factories/user.model.factory';
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import * as admin from 'firebase-admin';
 
@@ -21,23 +20,20 @@ admin.initializeApp({
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  // constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) {}
 
   async canActivate(ctx: ExecutionContext): Promise<boolean> {
     const req = ctx.switchToHttp().getRequest();
 
-    if (!req.headers['authtoken']) {
+    if (!req.headers['idtoken']) {
       return false;
     }
 
     try {
-      const userEntity = await admin
-        .auth()
-        .verifyIdToken(req.headers['authtoken'].toString());
-      console.log(userEntity);
-      req.user = UserModelFactory.create(userEntity);
+      req.user = await this.userService.findByIdToken(
+        req.headers['idtoken'].toString(),
+      );
     } catch (err) {
-      console.info(err);
       return false;
     }
 
