@@ -62,19 +62,19 @@ export class CardEntity {
   @Column('enum', { enum: Attribute })
   attribute: Attribute;
 
-  @Column('enum', { enum: Type })
+  @Column('enum', { enum: Type, nullable: true })
   type: Type;
 
-  @Column()
+  @Column({ nullable: true })
   attack: number;
 
-  @Column()
+  @Column({ nullable: true })
   defence: number;
 
-  @Column()
+  @Column({ nullable: true })
   cost: number;
 
-  @Column()
+  @Column({ nullable: true })
   detail: string;
 
   @Column()

@@ -6,6 +6,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { UserService } from './user/user.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { GraphQLModule } from '@nestjs/graphql';
 
 const {
   DB_TYPE,
@@ -19,6 +20,10 @@ const {
 
 @Module({
   imports: [
+    GraphQLModule.forRoot({
+      playground: true,
+      autoSchemaFile: 'src/schema.graphql',
+    }),
     TypeOrmModule.forFeature([DeckEntity]), // HACK: I don't know why this is needed.
     TypeOrmModule.forRoot({
       type: DB_TYPE,

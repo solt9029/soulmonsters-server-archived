@@ -1,3 +1,4 @@
+import { Kind, Attribute } from './card.entity';
 import { CardModel } from './card.model';
 import { CardEntity } from './card.entity';
 import { Injectable } from '@nestjs/common';
