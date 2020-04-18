@@ -1,5 +1,5 @@
-import { UserEntity } from './../entities/user.entity';
-import { UserModel } from '../models/user.model';
+import { UserEntity } from './user.entity';
+import { UserModel } from './user.model';
 
 export abstract class UserModelFactory {
   public static create(userEntity: UserEntity): UserModel {

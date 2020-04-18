@@ -1,6 +1,6 @@
-import { CardModel } from './../models/card.model';
+import { CardModel } from './card.model';
 import { Pagination, IPaginationOptions } from 'nestjs-typeorm-paginate';
-import { CardRo } from './../ros/card.ro';
+import { CardRo } from './card.ro';
 
 export abstract class CardRoFactory {
   public static createCardRo(cardModel: CardModel): CardRo {

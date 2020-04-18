@@ -1,9 +1,9 @@
-import { CardModel } from './../models/card.model';
-import { CardEntity } from './../entities/card.entity';
+import { CardModel } from './card.model';
+import { CardEntity } from './card.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CardModelFactory } from 'src/factories/card.model.factory';
+import { CardModelFactory } from 'src/card/card.model.factory';
 import {
   paginate,
   Pagination,

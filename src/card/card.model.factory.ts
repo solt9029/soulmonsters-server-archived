@@ -1,6 +1,6 @@
-import { CardEntity } from './../entities/card.entity';
+import { CardEntity } from './card.entity';
 import { Pagination, IPaginationOptions } from 'nestjs-typeorm-paginate';
-import { CardModel } from '../models/card.model';
+import { CardModel } from './card.model';
 
 export abstract class CardModelFactory {
   public static createCardModel(cardEntity: CardEntity): CardModel {

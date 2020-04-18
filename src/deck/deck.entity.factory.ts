@@ -1,5 +1,5 @@
-import { DeckModel } from '../models/deck.model';
-import { DeckEntity } from '../entities/deck.entity';
+import { DeckModel } from './deck.model';
+import { DeckEntity } from './deck.entity';
 
 export abstract class DeckEntityFactory {
   public static create(deckModel: DeckModel): DeckEntity {

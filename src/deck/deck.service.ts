@@ -1,10 +1,10 @@
-import { DeckModel } from './../models/deck.model';
-import { DeckEntity } from './../entities/deck.entity';
+import { DeckModel } from './deck.model';
+import { DeckEntity } from './deck.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { DeckEntityFactory } from 'src/factories/deck.entity.factory';
-import { DeckModelFactory } from 'src/factories/deck.model.factory';
+import { DeckEntityFactory } from 'src/deck/deck.entity.factory';
+import { DeckModelFactory } from 'src/deck/deck.model.factory';
 
 @Injectable()
 export class DeckService {

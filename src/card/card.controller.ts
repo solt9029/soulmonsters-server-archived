@@ -1,8 +1,8 @@
 import { Pagination } from 'nestjs-typeorm-paginate';
-import { CardRo } from './../ros/card.ro';
-import { CardService } from './../services/card.service';
+import { CardRo } from './card.ro';
+import { CardService } from './card.service';
 import { Controller, Get, Query } from '@nestjs/common';
-import { CardRoFactory } from 'src/factories/card.ro.factory';
+import { CardRoFactory } from 'src/card/card.ro.factory';
 
 @Controller('card')
 export class CardController {

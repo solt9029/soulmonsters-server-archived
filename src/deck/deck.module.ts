@@ -1,7 +1,7 @@
-import { UserService } from './../services/user.service';
-import { DeckService } from './../services/deck.service';
-import { DeckController } from './../controllers/Deck.controller';
-import { DeckEntity } from './../entities/Deck.entity';
+import { UserService } from '../user/user.service';
+import { DeckService } from './deck.service';
+import { DeckController } from './deck.controller';
+import { DeckEntity } from './deck.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
 

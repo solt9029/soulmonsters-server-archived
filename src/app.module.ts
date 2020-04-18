@@ -1,10 +1,10 @@
-import { CardEntity } from './../entities/card.entity';
-import { CardModule } from './card.module';
-import { DeckEntity } from './../entities/deck.entity';
-import { DeckModule } from './deck.module';
+import { CardEntity } from './card/card.entity';
+import { CardModule } from './card/card.module';
+import { DeckEntity } from './deck/deck.entity';
+import { DeckModule } from './deck/deck.module';
 import { Module } from '@nestjs/common';
-import { AppController } from '../controllers/app.controller';
-import { UserService } from '../services/user.service';
+import { AppController } from './app.controller';
+import { UserService } from './user/user.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 const {

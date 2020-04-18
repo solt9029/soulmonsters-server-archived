@@ -1,9 +1,9 @@
-import { AuthGuard } from '../guards/auth.guard';
-import { SaveDeckDto } from './../dtos/save.deck.dto';
-import { DeckModel } from './../models/deck.model';
-import { DeckService } from './../services/deck.service';
+import { AuthGuard } from '../guard/auth.guard';
+import { SaveDeckDto } from './save.deck.dto';
+import { DeckModel } from './deck.model';
+import { DeckService } from './deck.service';
 import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
-import { User } from 'src/decorators/user.decorator';
+import { User } from 'src/user/user.decorator';
 
 @Controller('deck')
 @UseGuards(AuthGuard)
