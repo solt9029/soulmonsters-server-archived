@@ -1,4 +1,3 @@
-import { Kind, Attribute } from './card.entity';
 import { CardModel } from './card.model';
 import { CardEntity } from './card.entity';
 import { Injectable } from '@nestjs/common';
@@ -21,6 +20,11 @@ export class CardService {
   async findAll(): Promise<CardModel[]> {
     const cardEntities = await this.cardRepository.find();
     return cardEntities.map(value => CardModelFactory.createCardModel(value));
+  }
+
+  async findOne(id: number): Promise<CardModel> {
+    const cardEntity = await this.cardRepository.findOne(id);
+    return CardModelFactory.createCardModel(cardEntity);
   }
 
   async paginate(options: IPaginationOptions): Promise<Pagination<CardModel>> {
