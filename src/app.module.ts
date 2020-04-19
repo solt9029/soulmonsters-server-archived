@@ -1,3 +1,4 @@
+import { CardDeckEntity } from './card.deck/card.deck.entity';
 import { CardEntity } from './card/card.entity';
 import { CardModule } from './card/card.module';
 import { DeckEntity } from './deck/deck.entity';
@@ -32,7 +33,7 @@ const {
       username: DB_USERNAME,
       password: DB_PASSWORD,
       database: DB_DATABASE,
-      entities: [DeckEntity, CardEntity],
+      entities: [DeckEntity, CardEntity, CardDeckEntity],
       synchronize: DB_SYNCHRONIZE?.toLowerCase() === 'true',
     }),
     DeckModule,

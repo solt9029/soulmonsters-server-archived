@@ -14,6 +14,7 @@ export abstract class CardObjectTypeFactory {
       cardModel.cost,
       cardModel.detail,
       cardModel.picture,
+      cardModel.count,
     );
   }
 }

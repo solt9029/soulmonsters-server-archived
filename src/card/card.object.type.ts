@@ -13,6 +13,7 @@ export class CardObjectType {
     cost: number,
     detail: string,
     picture: string,
+    count?: number,
   ) {
     this.id = id;
     this.name = name;
@@ -24,6 +25,7 @@ export class CardObjectType {
     this.cost = cost;
     this.detail = detail;
     this.picture = picture;
+    this.count = count === undefined ? null : count;
   }
 
   @Field(type => ID)
@@ -55,4 +57,7 @@ export class CardObjectType {
 
   @Field()
   picture: string;
+
+  @Field({ nullable: true })
+  count: number;
 }

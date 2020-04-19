@@ -34,5 +34,10 @@ export class CardModel {
     public cost: number | null,
     public detail: string,
     public picture: string,
-  ) {}
+    count?: number,
+  ) {
+    this.count = count === undefined ? null : count;
+  }
+
+  count: number | null;
 }

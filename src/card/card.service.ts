@@ -9,17 +9,36 @@ import {
   Pagination,
   IPaginationOptions,
 } from 'nestjs-typeorm-paginate';
+import { CardDeckEntity } from 'src/card.deck/card.deck.entity';
 
 @Injectable()
 export class CardService {
   constructor(
     @InjectRepository(CardEntity)
     private readonly cardRepository: Repository<CardEntity>,
+    @InjectRepository(CardDeckEntity)
+    private readonly cardDeckRepository: Repository<CardDeckEntity>,
   ) {}
 
   async findAll(): Promise<CardModel[]> {
     const cardEntities = await this.cardRepository.find();
     return cardEntities.map(value => CardModelFactory.createCardModel(value));
+  }
+
+  async findByDeckId(deckId: number): Promise<CardModel[]> {
+    const cardDeckEntities = await this.cardDeckRepository.find({
+      where: { deckId },
+      relations: ['card'],
+    });
+    const cardEntities = await this.cardRepository.findByIds(
+      cardDeckEntities.map(value => value.card.id),
+    );
+    return cardEntities.map(cardEntity => {
+      const cardDeckEntity = cardDeckEntities.find(
+        cardDeckEntity => cardDeckEntity.card.id === cardEntity.id,
+      );
+      return CardModelFactory.createCardModel(cardEntity, cardDeckEntity.count);
+    });
   }
 
   async findOne(id: number): Promise<CardModel | undefined> {

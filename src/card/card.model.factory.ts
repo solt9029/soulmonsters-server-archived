@@ -3,7 +3,10 @@ import { Pagination, IPaginationOptions } from 'nestjs-typeorm-paginate';
 import { CardModel } from './card.model';
 
 export abstract class CardModelFactory {
-  public static createCardModel(cardEntity: CardEntity): CardModel {
+  public static createCardModel(
+    cardEntity: CardEntity,
+    count?: number,
+  ): CardModel {
     return new CardModel(
       cardEntity.id,
       cardEntity.name,
@@ -15,6 +18,7 @@ export abstract class CardModelFactory {
       cardEntity.cost,
       cardEntity.detail,
       cardEntity.picture,
+      count === undefined ? null : count,
     );
   }
 

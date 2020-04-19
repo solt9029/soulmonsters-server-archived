@@ -81,9 +81,9 @@ export class CardEntity {
   @Column()
   picture: string;
 
-  // @OneToMany(
-  //   type => CardDeckEntity,
-  //   cardDeckEntity => cardDeckEntity.card,
-  // )
-  // cardDecks: CardDeckEntity[];
+  @OneToMany(
+    type => CardDeckEntity,
+    cardDeckEntity => cardDeckEntity.card,
+  )
+  cardDecks: CardDeckEntity[];
 }

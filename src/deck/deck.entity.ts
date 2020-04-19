@@ -18,9 +18,9 @@ export class DeckEntity {
   @Column({ length: 64 })
   name: string;
 
-  // @OneToMany(
-  //   type => CardDeckEntity,
-  //   cardDeckEntity => cardDeckEntity.deck,
-  // )
-  // cardDecks: CardDeckEntity[];
+  @OneToMany(
+    type => CardDeckEntity,
+    cardDeckEntity => cardDeckEntity.deck,
+  )
+  cardDecks: CardDeckEntity[];
 }
