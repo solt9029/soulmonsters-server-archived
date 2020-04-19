@@ -22,8 +22,11 @@ export class CardService {
     return cardEntities.map(value => CardModelFactory.createCardModel(value));
   }
 
-  async findOne(id: number): Promise<CardModel> {
+  async findOne(id: number): Promise<CardModel | undefined> {
     const cardEntity = await this.cardRepository.findOne(id);
+    if (cardEntity === undefined) {
+      return undefined;
+    }
     return CardModelFactory.createCardModel(cardEntity);
   }
 

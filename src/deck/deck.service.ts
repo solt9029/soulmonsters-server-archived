@@ -18,6 +18,14 @@ export class DeckService {
     return deckEntities.map(value => DeckModelFactory.create(value));
   }
 
+  async findOne(id: number): Promise<DeckModel> {
+    const deckEntity = await this.deckRepository.findOne(id);
+    if (deckEntity === undefined) {
+      return undefined;
+    }
+    return DeckModelFactory.create(deckEntity);
+  }
+
   async findByUserId(userId: string): Promise<DeckModel[]> {
     const deckEntities = await this.deckRepository.find({ where: { userId } });
     return deckEntities.map(value => DeckModelFactory.create(value));

@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { CardDeckEntity } from './../card.deck/card.deck.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 export enum Attribute {
   RED = 'red',
@@ -79,4 +80,10 @@ export class CardEntity {
 
   @Column()
   picture: string;
+
+  // @OneToMany(
+  //   type => CardDeckEntity,
+  //   cardDeckEntity => cardDeckEntity.card,
+  // )
+  // cardDecks: CardDeckEntity[];
 }

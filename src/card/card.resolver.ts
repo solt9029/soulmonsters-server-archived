@@ -2,6 +2,7 @@ import { CardService } from './card.service';
 import { CardObjectType } from './card.object.type';
 import { Resolver, Query, Args } from '@nestjs/graphql';
 import { CardObjectTypeFactory } from './card.object.type.factory';
+import { NotFoundException } from '@nestjs/common';
 
 @Resolver(of => CardObjectType)
 export class CardResolver {
@@ -16,6 +17,9 @@ export class CardResolver {
   @Query(returns => CardObjectType)
   async card(@Args('id') id: number): Promise<CardObjectType> {
     const cardModel = await this.cardService.findOne(id);
+    if (cardModel === undefined) {
+      throw new NotFoundException();
+    }
     return CardObjectTypeFactory.create(cardModel);
   }
 }
