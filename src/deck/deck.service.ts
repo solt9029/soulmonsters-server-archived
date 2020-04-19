@@ -18,7 +18,7 @@ export class DeckService {
     return deckEntities.map(value => DeckModelFactory.create(value));
   }
 
-  async findByUserId(userId: number): Promise<DeckModel[]> {
+  async findByUserId(userId: string): Promise<DeckModel[]> {
     const deckEntities = await this.deckRepository.find({ where: { userId } });
     return deckEntities.map(value => DeckModelFactory.create(value));
   }
