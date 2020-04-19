@@ -9,7 +9,9 @@ export class CardResolver {
   constructor(private readonly cardService: CardService) {}
 
   @Query(returns => [CardObjectType])
-  async cards(@Args('deckId') deckId?: number): Promise<CardObjectType[]> {
+  async cards(
+    @Args('deckId', { nullable: true }) deckId?: number,
+  ): Promise<CardObjectType[]> {
     if (deckId !== undefined) {
       const cardModels = await this.cardService.findByDeckId(deckId);
       return cardModels.map(value => CardObjectTypeFactory.create(value));
