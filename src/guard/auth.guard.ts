@@ -1,6 +1,7 @@
 import { UserService } from '../user/user.service';
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import * as admin from 'firebase-admin';
+import { GqlExecutionContext } from '@nestjs/graphql';
 
 const {
   FIREBASE_PROJECT_ID,
@@ -23,15 +24,11 @@ export class AuthGuard implements CanActivate {
   constructor(private readonly userService: UserService) {}
 
   async canActivate(ctx: ExecutionContext): Promise<boolean> {
-    const req = ctx.switchToHttp().getRequest();
-
-    if (!req.headers['idtoken']) {
-      return false;
-    }
+    const req = GqlExecutionContext.create(ctx).getContext().req;
 
     try {
       req.user = await this.userService.findByIdToken(
-        req.headers['idtoken'].toString(),
+        req.headers['authorization']?.toString(),
       );
     } catch (err) {
       return false;
