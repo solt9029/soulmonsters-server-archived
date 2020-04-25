@@ -1,7 +1,10 @@
+import { PrismaService } from './../services/prisma.service';
+import { DeckResolver } from './../resolvers/deck.resolver';
+import { DeckService } from './../services/deck.service';
 import { CardEntity } from './../entities/card.entity';
 import { CardModule } from './card.module';
 import { DeckEntity } from './../entities/deck.entity';
-import { DeckModule } from './deck.module';
+// import { DeckModule } from './deck.module';
 import { Module } from '@nestjs/common';
 import { AppController } from '../controllers/app.controller';
 import { UserService } from '../services/user.service';
@@ -30,10 +33,9 @@ const {
       entities: [DeckEntity, CardEntity],
       synchronize: DB_SYNCHRONIZE?.toLowerCase() === 'true',
     }),
-    DeckModule,
     CardModule,
   ],
   controllers: [AppController],
-  providers: [UserService],
+  providers: [UserService, DeckResolver, PrismaService],
 })
 export class AppModule {}
